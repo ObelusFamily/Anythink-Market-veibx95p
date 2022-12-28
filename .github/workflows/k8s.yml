@@ -155,3 +155,10 @@ jobs:
               --set clusterEnv=${{ secrets.CLUSTER_ENV }} \
               --set frontend.image.tag=${{ env.IMAGE_TAG }} \
               --set backend.image.tag=${{ env.IMAGE_TAG }}
+              
+      - name: Armory Deployment
+        uses: armory/cli-deploy-action@main
+        with:
+          clientId: "${{ secrets.ARMORY_CLIENT_ID }}" 
+          clientSecret:  "${{ secrets.ARMORY_CLIENT_SECRET }}" 
+          path-to-file: "/armory-deploy.yaml" # Path to the deployment file.
