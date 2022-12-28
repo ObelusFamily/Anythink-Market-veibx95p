@@ -164,6 +164,7 @@ jobs:
 
       - name: Deploy
         run: |
+          mkdir manifests
           helm template --timeout 10m anythink-market ./charts/ \
               --set clusterEnv=${{ secrets.CLUSTER_ENV }} \
               --set frontend.image.tag=${{ env.IMAGE_TAG }} \
