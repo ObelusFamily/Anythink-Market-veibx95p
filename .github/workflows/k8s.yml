@@ -164,11 +164,11 @@ jobs:
 
       - name: Deploy
         run: |
-          helm upgrade --install --timeout 10m anythink-market ./charts/ \
+          helm template --timeout 10m anythink-market ./charts/ \
               --set clusterEnv=${{ secrets.CLUSTER_ENV }} \
               --set frontend.image.tag=${{ env.IMAGE_TAG }} \
               --set backend.image.tag=${{ env.IMAGE_TAG }} \
-              --set database.deploy=false
+              --set database.deploy=false > manifests/anythink.yml
       - name: Armory Deployment
         uses: armory/cli-deploy-action@main
         with:
